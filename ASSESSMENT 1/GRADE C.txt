@@ -1,0 +1,123 @@
+GRADE C
+LINK FOR GRADE C PROGRAM 
+https://www.programiz.com/online-compiler/74QeeroyawGDl
+
+
+2. THE CODE FOR GRADE C PROGRAM 
+// ASSESSMENT 1 GRADE C 
+#include <stdio.h>
+
+int main()
+{
+    //I Declared all variables
+    int food;
+    int transport;
+    int entertainment;
+
+    int total;
+    float average;
+    int budget = 40000;
+
+    printf("\n==== SOL ASSESSMENT 1 ====\n");
+    printf("===== WEEKLY EXPENSE TRACKER =====\n\n");
+
+    printf("=== GRADE C ====\n");
+   
+    printf("Enter Food Expenses: ");
+    scanf("%d", &food);
+
+    printf("Enter Transport Expenses: ");
+    scanf("%d", &transport);
+
+    printf("Enter Entertainment Expenses: ");
+    scanf("%d", &entertainment);
+
+    // Validation
+    if (food < 0 || transport < 0 || entertainment < 0)
+    {
+
+//when users enters the wrong values
+
+        printf("\nInvalid Input! Spending cannot be negative.\n");
+        printf("\n  Try again! \n");
+        return 0;
+     }
+
+//When user enters the right values
+
+     total = food + transport + entertainment;
+     average = total/7.0;
+     
+        printf("\n== RESULT OUTPUT  ====\n");
+    printf("FOOD: £%d\n", food);
+    printf("TRANSPORT: £%d\n", transport);
+    printf("ENTERTAINMENT: £%d\n", entertainment);
+
+    printf("\nTotal Weekly Spending: £%d\n", total);
+    printf("Daily Average: £%.2f\n", average);
+      
+ 
+// Budget comparison
+    if (total <= budget)
+    {
+        printf(" STATUS: Within Budget\n");
+    }
+    else
+    {
+        printf("STATUS: Over Budget\n");
+    }
+        return 0;
+ }
+
+
+
+//Food, transport, entertainment 
+//GRACE C
+//1. USER INPUT (SCANF, VALIDATION)
+//2. calculate (1). total spending (2.) Daily Average spending 
+//3. compare the total against a budget, e.g £40000
+//if (total<=buget) 
+//OUPTPUT: you're within buget
+//else (you're over budget )
+
+//4. Validation incase the user enters a wrong input
+//OUTPUT: Invalid input: Spending can not be Negative.
+//TRY AGAIN 
+
+//OUTPUT DESIGN
+//OUTPUT 1:
+//4.Validation WHEN USER ENTERS THE WRONG INPUT 
+//====WEEKLY EXPENSE TRACKER =====
+//=== GRADE C ====
+//ENTER FOOD EXPENSES: -20000
+//ENTER TRANSPORT ENSPENSES: 10000
+//ENTER ENTERTAINMENT EXPENSES: 7000
+
+//===RESULT OUTPUT ===
+
+//OUTPUT 1
+//FOOD: £-20000
+//TRANSPORT: £1000
+//ENTERTAINMENT: £7000
+//Invalid Input: Spending can nit be Negative. 
+//TRY AGAIN
+//return o; (TO END THE PROGRAM)
+
+//OUTPUT 2
+//WHEN USER ENTERS THE RIGHT INPUT 
+//==== WEEKLY EXPENSE TRACKER ====
+//==== GRADE C ====
+//ENTER FOOD EXPENSES: 20000
+//ENTER TPT EXPENSES: 10000
+//ENTER ENTERTAINMENT EXPENSES: 7000
+
+//==== RESULT OUTPUT ====
+//FOOD: £20000
+//TRANSPORT: £10000
+//ENTERTAINMENT: £7000
+
+//TOTAL WEEKLY SPENDING: £37000
+//DAILY AVERAGE SPENDING: £5,285.71
+//STATUS: WITHIN BUDGET
+
+

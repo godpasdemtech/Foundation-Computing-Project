@@ -1,0 +1,49 @@
+
+
+
+// ASSESSMENT 1 GRADE D PROGRAM 
+#include <stdio.h>
+
+int main()
+{
+    // Declare variables
+    int food = 15000;
+    int transport = 8000;
+    int entertainment = 5000;
+    int total = food + transport + entertainment;
+
+    // The output
+    printf("\n==== SOL ASSESSMENT 1 ====\n");
+    printf("====== WEEKLY EXPENSE TRACKER ======\n\n");
+
+    printf("=== GRADE D ====\n");
+
+    printf("Food:           £%d\n", food);
+    printf("Transport:      £%d\n", transport);
+    printf("Entertainment:  £%d\n", entertainment);
+
+    printf("\n----------------------\n");
+    printf("Total Weekly Spending: £%d\n", total);
+
+    return 0;
+}
+
+
+
+//GRADE D is a fixed input embedded inside the program. 
+
+//OUTPUT DISPLAY
+//==== SOL ASSESSMENT 1 ====
+  //  ====== WEEKLY EXPENSE TRACKER ======
+
+  //  === GRADE D ====
+
+//Food:           £15000
+//Transport:      £8000
+//Entertainment:  £5000
+
+//----------------------------------
+//Total Weekly Spending: £28000 TO A BUDGET 
+//DAILY AVERAGE SPENDING: TOTAL/7.0
+
+
