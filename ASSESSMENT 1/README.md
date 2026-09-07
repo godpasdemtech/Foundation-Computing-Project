@@ -1,6 +1,6 @@
 # Assessment 1
 
-## Foundation Computing Assessment 01
+## Foundation Computing Assessment 1
 
 ### Topic
 C Programming Fundamentals
