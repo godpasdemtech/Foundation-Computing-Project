@@ -1,1 +1,244 @@
 
+// ASSESSMENT 1 GRADE A 
+#include <stdio.h>
+
+#define MAX 10
+
+int main()
+{
+
+    char category[MAX][30];
+
+    int week1[MAX];
+    int week2[MAX];
+
+    int totalWeek1 = 0;
+    int totalWeek2 = 0;
+
+    float averageWeek1;
+    float averageWeek2;
+
+    int numberOfCategories;
+
+    printf("\n==== SOL ASSESSMENT 1 ====\n");
+    printf("===== WEEKLY EXPENSE TRACKER=====\n\n");
+
+    printf("==== GRADE A ======\n");
+
+    printf("How many spending categories do you want to track (Maximum %d): ", MAX);
+    scanf("%d", &numberOfCategories);
+
+    if(numberOfCategories < 1 || numberOfCategories > MAX)
+    {
+        printf("\nInvalid number of categories!\n");
+        return 0;
+    }
+
+    /* Enter Category Names */
+
+    printf("\n===== ENTER CATEGORY NAMES =====\n");
+
+    for(int i = 0; i < numberOfCategories; i++)
+    {
+        printf("Category %d: ", i + 1);
+        scanf("%s", category[i]);
+    }
+
+    /* Week One */
+
+    printf("\n========== WEEK 1 ==========\n");
+
+    for(int i = 0; i < numberOfCategories; i++)
+    {
+        printf("%s Expense: ", category[i]);
+        scanf("%d", &week1[i]);
+
+        if(week1[i] < 0)
+        {
+            printf("\nInvalid Input! Spending cannot be negative.\n");
+            return 0;
+        }
+
+        totalWeek1 += week1[i];
+    }
+
+    /* Week Two */
+
+    printf("\n========== WEEK 2 ==========\n");
+
+    for(int i = 0; i < numberOfCategories; i++)
+    {
+        printf("%s Expense: ", category[i]);
+        scanf("%d", &week2[i]);
+
+        if(week2[i] < 0)
+        {
+            printf("\nInvalid Input! Spending cannot be negative.\n");
+            return 0;
+        }
+
+        totalWeek2 += week2[i];
+    }
+
+    averageWeek1 = totalWeek1 / 7.0;
+    averageWeek2 = totalWeek2 / 7.0;
+
+    /* Output */
+
+    printf("\n===========================\n");
+    printf("         WEEK 1 REPORT\n");
+    printf("===========================\n");
+
+    for(int i = 0; i < numberOfCategories; i++)
+    {
+        printf("%-20s £%d\n", category[i], week1[i]);
+    }
+
+    printf("--------------------------\n");
+    printf("Total Spending : £%d\n", totalWeek1);
+    printf("Daily Average  : £%.2f\n", averageWeek1);
+
+    printf("\n==========================\n");
+    printf("         WEEK 2 REPORT\n");
+    printf("===========================\n");
+
+    for(int i = 0; i < numberOfCategories; i++)
+    {
+        printf("%-20s £%d\n", category[i], week2[i]);
+    }
+
+    printf("--------------------------\n");
+    printf("Total Spending : £%d\n", totalWeek2);
+    printf("Daily Average  : £%.2f\n", averageWeek2);
+
+    /* Category Comparison */
+
+    printf("\n==========================\n");
+    printf("CATEGORY COMPARISON\n");
+    printf("===========================\n");
+
+    for(int i = 0; i < numberOfCategories; i++)
+    {
+        printf("%s : ", category[i]);
+
+        if(week2[i] > week1[i])
+        {
+            printf("Increased\n");
+        }
+        else if(week2[i] < week1[i])
+        {
+            printf("Decreased\n");
+        }
+        else
+        {
+            printf("Stayed the Same\n");
+        }
+    }
+
+    /* Overall Comparison */
+
+    printf("\n==========================\n");
+    printf("OVERALL SUMMARY\n");
+    printf("==========================\n");
+
+    printf("Week 1 Total : £%d\n", totalWeek1);
+    printf("Week 2 Total : £%d\n", totalWeek2);
+
+    if(totalWeek2 > totalWeek1)
+    {
+        printf("\nOverall Spending Increased.\n");
+    }
+    else if(totalWeek2 < totalWeek1)
+    {
+        printf("\nOverall Spending Decreased.\n");
+    }
+    else
+    {
+        printf("\nOverall Spending Stayed the Same.\n");
+    }
+    return 0;
+}
+
+
+
+
+
+
+//Grade A REQUIREMENTS:
+//User chooses the number of categories.
+
+//User enters category names.
+
+//Week 1 and Week 2 expenses are recorded.
+
+//Totals and daily averages are calculated.
+
+//Each category is compared (Increased, Decreased, Stayed the same).
+
+// THE DESIGN OUTPUT SHOULD LOOK LIKE THIS 
+//SAMPLE FOR A USER ENTERING 4 CATEGORIES 
+
+//==== SOL ASSESSMENT 1 ====
+//===== WEEKLY EXPENSE TRACKER=====
+
+//==== GRADE A ======
+//How many spending categories do you //want to track (Maximum 10): 4
+
+//===== ENTER CATEGORY NAMES =====
+//Category 1: Food
+//Category 2: data
+//Category 3: water
+//Category 4: gas
+
+//========== WEEK 1 ==========
+//Food Expense: 12000
+//data Expense: 9000
+//water Expense: 8000
+//gas Expense: 7
+
+//========== WEEK 2 ==========
+//Food Expense: 2000
+//data Expense: 5000
+//water Expense: 1000
+//gas Expense: 2000
+
+//===========================
+      //   WEEK 1 REPORT
+//===========================
+//Food                 £12000
+//data                 £9000
+//water                £8000
+//gas                  £7
+//--------------------------
+//Total Spending : £29007
+//Daily Average  : £4143.86
+
+//==========================
+     //    WEEK 2 REPORT
+//===========================
+//Food                 £2000
+//data                 £5000
+//water                £1000
+//gas                  £2000
+//--------------------------
+//Total Spending : £10000
+//Daily Average  : £1428.57
+
+//==========================
+//CATEGORY COMPARISON
+//===========================
+//Food : Decreased
+//data : Decreased
+//water : Decreased
+//gas : Increased
+
+//==========================
+//OVERALL SUMMARY
+//==========================
+//Week 1 Total : £29007
+//Week 2 Total : £10000
+
+//Overall Spending Decreased.
+
+
+
