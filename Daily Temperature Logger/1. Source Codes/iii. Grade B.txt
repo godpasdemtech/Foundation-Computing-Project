@@ -1,0 +1,323 @@
+
+#include <stdio.h>
+
+int main()
+{
+    int numberOfDays;
+    int day;
+    int menuChoice;
+
+    float temperatures[50];
+
+    const float SENTINEL = -999.0;
+
+    float totalTemperature;
+    float averageTemperature;
+
+    float highestTemperature;
+    float lowestTemperature;
+
+    float threshold;
+
+    int aboveThreshold;
+    int belowThreshold;
+
+    int week;
+    int startDay;
+    int endDay;
+    int daysInWeek;
+
+    float weeklyTotal;
+    float weeklyAverage;
+
+
+printf("\n  ======== SOL ASSESSMENT 5 ========\n");
+    printf("  === DAILY TEMPERATURE LOGGER  ===\n");
+
+    printf("      ======= GRADE B =======\n\n");
+
+
+     //   ENTER NUMBER OF DAYS
+    
+    do
+    {
+        printf("How many days do you want to record (1-30): ");
+        scanf("%d", &numberOfDays);
+
+        if(numberOfDays < 1 || numberOfDays > 30)
+        {
+            printf("Invalid number of days!\n");
+            printf("Please enter a number between 1 and 30.\n\n");
+        }
+
+    }
+    while(numberOfDays < 1 || numberOfDays > 30);
+
+
+     //   ENTER TEMPERATURE READINGS
+   
+
+    for(day = 0; day < numberOfDays; day++)
+    {
+        do
+        {
+            printf("Enter temperature for Day %d: ",
+                   day + 1);
+
+            scanf("%f", &temperatures[day]);
+
+            if(temperatures[day] == SENTINEL)
+            {
+                printf("That value is reserved for the "
+                       "end of the readings.\n");
+                printf("Please enter another temperature.\n");
+            }
+
+        }
+        while(temperatures[day] == SENTINEL);
+    }
+
+    
+     //   MARK END OF VALID READINGS
+    
+    temperatures[numberOfDays] = SENTINEL;
+
+
+       // MENU COMES HERE 
+   
+    do
+    {
+        printf("\n=========================================\n");
+        printf("              TEMPERATURE MENU\n");
+        printf("=========================================\n");
+
+        printf("1. Display all temperature readings\n");
+        printf("2. Calculate average temperature\n");
+        printf("3. Find highest and lowest temperatures\n");
+        printf("4. Count days above/below a threshold\n");
+        printf("5. Calculate weekly averages\n");
+        printf("6. Exit\n");
+
+        printf("\nEnter your choice: ");
+        scanf("%d", &menuChoice);
+
+
+        switch(menuChoice)
+        {
+
+            
+           //     OPTION 1
+           //     DISPLAY READINGS
+            
+
+            case 1:
+
+                printf("\n=========================================\n");
+                printf("        TEMPERATURE READINGS\n");
+                printf("=========================================\n");
+
+                day = 0;
+
+                while(temperatures[day] != SENTINEL)
+                {
+                    printf("Day %d: %.2f C\n",
+                           day + 1,
+                           temperatures[day]);
+
+                    day++;
+                }
+
+                break;
+
+
+            
+           //     OPTION 2
+            //    CALCULATE AVERAGE
+           
+
+            case 2:
+
+                totalTemperature = 0;
+                day = 0;
+
+                while(temperatures[day] != SENTINEL)
+                {
+                    totalTemperature =
+                    totalTemperature + temperatures[day];
+
+                    day++;
+                }
+
+                averageTemperature =
+                totalTemperature / numberOfDays;
+
+                printf("\nAverage Temperature: %.2f C\n",
+                       averageTemperature);
+
+                break;
+
+
+            //    OPTION 3
+           //     HIGHEST AND LOWEST
+            
+
+            case 3:
+
+                highestTemperature = temperatures[0];
+                lowestTemperature = temperatures[0];
+
+                day = 1;
+
+                while(temperatures[day] != SENTINEL)
+                {
+                    if(temperatures[day] > highestTemperature)
+                    {
+                        highestTemperature =
+                        temperatures[day];
+                    }
+
+                    if(temperatures[day] < lowestTemperature)
+                    {
+                        lowestTemperature =
+                        temperatures[day];
+                    }
+
+                    day++;
+                }
+
+                printf("\n=========================================\n");
+                printf("       TEMPERATURE ANALYSIS\n");
+                printf("=========================================\n");
+
+                printf("Highest Temperature: %.2f C\n",
+                       highestTemperature);
+
+                printf("Lowest Temperature : %.2f C\n",
+                       lowestTemperature);
+
+                break;
+
+
+               // OPTION 4
+            //    THRESHOLD ANALYSIS
+           
+
+            case 4:
+
+                printf("\nEnter temperature threshold: ");
+                scanf("%f", &threshold);
+
+                aboveThreshold = 0;
+                belowThreshold = 0;
+
+                day = 0;
+
+                while(temperatures[day] != SENTINEL)
+                {
+                    if(temperatures[day] > threshold)
+                    {
+                        aboveThreshold++;
+                    }
+                    else if(temperatures[day] < threshold)
+                    {
+                        belowThreshold++;
+                    }
+
+                    day++;
+                }
+
+                printf("\n=========================================\n");
+                printf("        THRESHOLD ANALYSIS\n");
+                printf("=========================================\n");
+
+                printf("Threshold          : %.2f C\n",
+                       threshold);
+
+                printf("Days Above         : %d\n",
+                       aboveThreshold);
+
+                printf("Days Below         : %d\n",
+                       belowThreshold);
+
+                break;
+
+
+            
+              //  OPTION 5
+            //    WEEKLY AVERAGES
+           
+
+            case 5:
+
+                printf("\n=========================================\n");
+                printf("           WEEKLY AVERAGES\n");
+                printf("=========================================\n");
+
+                week = 1;
+                startDay = 0;
+
+                while(startDay < numberOfDays)
+                {
+                    endDay = startDay + 7;
+
+                    if(endDay > numberOfDays)
+                    {
+                        endDay = numberOfDays;
+                    }
+
+                    weeklyTotal = 0;
+                    daysInWeek = 0;
+
+                    for(day = startDay;
+                        day < endDay;
+                        day++)
+                    {
+                        weeklyTotal =
+                        weeklyTotal + temperatures[day];
+
+                        daysInWeek++;
+                    }
+
+                    weeklyAverage =
+                    weeklyTotal / daysInWeek;
+
+                    printf("Week %d Average: %.2f C\n",
+                           week,
+                           weeklyAverage);
+
+                    week++;
+                    startDay = endDay;
+                }
+
+                break;
+
+
+            
+            //    OPTION 6
+          //      EXIT
+           
+            case 6:
+
+                printf("\n=========================================\n");
+                printf("Thank you for using the\n");
+                printf("Daily Temperature Logger!\n");
+                printf("=========================================\n");
+
+                break;
+
+
+            
+              //  INVALID CHOICE
+           
+            default:
+
+                printf("\nInvalid choice. Please try again.\n");
+        }
+
+    }
+    while(menuChoice != 6);
+
+
+    return 0;
+}
+
