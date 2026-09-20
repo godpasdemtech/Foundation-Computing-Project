@@ -1,6 +1,4 @@
 
-//ASSESSMENT 6 GRADE B 
-
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -26,7 +24,7 @@ int main()
     int i;
     int j;
 
-    printf("\n  ======== SOL ASSESSMENT 6 ========\n");
+    printf("\n  ======== GODPASDEM TECHNOLOGIES ========\n");
     printf("  === BOOK ORGANIZER ===\n");
 
     printf("      ======= GRADE B =======\n\n");
