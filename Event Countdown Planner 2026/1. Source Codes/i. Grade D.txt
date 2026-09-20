@@ -14,7 +14,7 @@ int main()
 
     int daysRemaining;
 
-    printf("\n  ======== SOL ASSESSMENT 4 ========\n");
+    printf("\n  ======== GODPASDEM TECHNOLOGIES ========\n");
     printf("  === EVENT COUNTDOWN PLANNER 2026 ===\n");
 
     printf("      ======= GRADE D =======\n\n");
