@@ -1,0 +1,30 @@
+
+
+// ASSESSMENT 1 GRADE D PROGRAM 
+#include <stdio.h>
+
+int main()
+{
+    // Declare variables
+    int food = 15000;
+    int transport = 8000;
+    int entertainment = 5000;
+    int total = food + transport + entertainment;
+
+    // The output
+    printf("\n==== SOL ASSESSMENT 1 ====\n");
+    printf("====== WEEKLY EXPENSE TRACKER ======\n\n");
+
+    printf("=== GRADE D ====\n");
+
+    printf("Food:           £%d\n", food);
+    printf("Transport:      £%d\n", transport);
+    printf("Entertainment:  £%d\n", entertainment);
+
+    printf("\n----------------------\n");
+    printf("Total Weekly Spending: £%d\n", total);
+
+    return 0;
+}
+
+
