@@ -1,0 +1,120 @@
+
+#include <stdio.h>
+
+int main()
+{
+    int currentDay, currentMonth;
+    int eventDay, eventMonth;
+
+    int currentDayNumber = 0;
+    int eventDayNumber = 0;
+
+    int daysRemaining;
+    int weekdayIndex;
+    int i;
+
+    int daysInMonth[12] =
+    {
+        31,28,31,30,
+        31,30,31,31,
+        30,31,30,31
+    };
+
+    char *weekdays[7] =
+    {
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+    };
+
+    printf("\n  ======== SOL ASSESSMENT 4 ========\n");
+    printf("  === EVENT COUNTDOWN PLANNER 2026 ===\n");
+
+    printf("      ======= GRADE B =======\n\n");
+
+    printf("Enter Current Day: ");
+    scanf("%d", &currentDay);
+
+    printf("Enter Current Month (1-12): ");
+    scanf("%d", &currentMonth);
+
+    printf("Enter Event Day: ");
+    scanf("%d", &eventDay);
+
+    printf("Enter Event Month (1-12): ");
+    scanf("%d", &eventMonth);
+
+    /* Validate Month */
+
+    if(currentMonth < 1 || currentMonth > 12)
+    {
+        printf("Invalid Current Month!\n");
+        return 0;
+    }
+
+    if(eventMonth < 1 || eventMonth > 12)
+    {
+        printf("Invalid Event Month!\n");
+        return 0;
+    }
+
+    /* Validate Day */
+
+    if(currentDay < 1 || currentDay > daysInMonth[currentMonth - 1])
+    {
+        printf("Invalid Current Day!\n");
+        return 0;
+    }
+
+    if(eventDay < 1 || eventDay > daysInMonth[eventMonth - 1])
+    {
+        printf("Invalid Event Day!\n");
+        return 0;
+    }
+
+    /* Current Day Number */
+
+    for(i = 0; i < currentMonth - 1; i++)
+    {
+        currentDayNumber += daysInMonth[i];
+    }
+
+    currentDayNumber += currentDay;
+
+    /* Event Day Number */
+
+    for(i = 0; i < eventMonth - 1; i++)
+    {
+        eventDayNumber += daysInMonth[i];
+    }
+
+    eventDayNumber += eventDay;
+
+    daysRemaining = eventDayNumber - currentDayNumber;
+
+    /* Calculate Weekday */
+
+    weekdayIndex = (eventDayNumber + 2) % 7;
+
+    printf("\n=====================================\n");
+    printf("EVENT SUMMARY\n");
+    printf("=====================================\n");
+
+    printf("Days Remaining : %d\n", daysRemaining);
+    printf("Weekday        : %s\n", weekdays[weekdayIndex]);
+
+    if(daysRemaining < 0)
+        printf("Status         : Already Passed\n");
+    else if(daysRemaining == 0)
+        printf("Status         : Today\n");
+    else if(daysRemaining <= 7)
+        printf("Status         : Coming Soon\n");
+    else
+        printf("Status         : Later in the Year\n");
+
+    return 0;
+}
