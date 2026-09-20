@@ -17,7 +17,7 @@ int main()
 
     int i;
 
-printf("\n  ======== SOL ASSESSMENT 6 ========\n");
+printf("\n  ======== GODPASDEM TECHNOLOGIES ========\n");
     printf("  === BOOK ORGANIZER ===\n");
 
     printf("      ======= GRADE D =======\n\n");
