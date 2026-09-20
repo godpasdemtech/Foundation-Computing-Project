@@ -1,0 +1,182 @@
+
+#include <stdio.h>
+
+int main()
+{
+    int numberOfDays;
+    int day;
+    int menuChoice;
+
+    float temperatures[30];
+
+    float totalTemperature;
+    float averageTemperature;
+
+    float highestTemperature;
+    float lowestTemperature;
+
+
+    printf("\n  ======== SOL ASSESSMENT 5 ========\n");
+    printf("  === DAILY TEMPERATURE LOGGER  ===\n");
+
+    printf("      ======= GRADE C =======\n\n");
+
+
+    //   USER ENTERS NUMBER OF DAYS
+   
+    do
+    {
+        printf("How many days do you want to record (1-30): ");
+        scanf("%d", &numberOfDays);
+
+        if(numberOfDays < 1 || numberOfDays > 30)
+        {
+            printf("Invalid number of days!\n");
+            printf("Please enter a number between 1 and 30.\n\n");
+        }
+
+    }
+    while(numberOfDays < 1 || numberOfDays > 30);
+
+
+    
+      //  ENTER TEMPERATURE READINGS
+
+    for(day = 0; day < numberOfDays; day++)
+    {
+        printf("Enter temperature for Day %d: ",
+               day + 1);
+
+        scanf("%f", &temperatures[day]);
+    }
+
+
+     //   MENU COMES HERE 
+  
+    do
+    {
+        printf("\n=========================================\n");
+        printf("              TEMPERATURE MENU\n");
+        printf("=========================================\n");
+
+        printf("1. Display all temperature readings\n");
+        printf("2. Calculate average temperature\n");
+        printf("3. Find highest and lowest temperatures\n");
+        printf("4. Exit\n");
+
+        printf("\nEnter your choice: ");
+        scanf("%d", &menuChoice);
+
+
+        switch(menuChoice)
+        {
+
+
+               // OPTION 1
+              //  DISPLAY READINGS
+            
+
+            case 1:
+
+                printf("\n=========================================\n");
+                printf("        TEMPERATURE READINGS\n");
+                printf("=========================================\n");
+
+                for(day = 0; day < numberOfDays; day++)
+                {
+                    printf("Day %d: %.2f C\n",
+                           day + 1,
+                           temperatures[day]);
+                }
+
+                break;
+
+
+             //   OPTION 2
+             //   CALCULATE AVERAGE
+           
+
+            case 2:
+
+                totalTemperature = 0;
+
+                for(day = 0; day < numberOfDays; day++)
+                {
+                    totalTemperature =
+                    totalTemperature + temperatures[day];
+                }
+
+                averageTemperature =
+                totalTemperature / numberOfDays;
+
+                printf("\nAverage Temperature: %.2f C\n",
+                       averageTemperature);
+
+                break;
+
+
+           //     OPTION 3
+            //    FIND HIGHEST AND LOWEST
+
+            case 3:
+
+                highestTemperature = temperatures[0];
+
+                lowestTemperature = temperatures[0];
+
+
+                for(day = 1; day < numberOfDays; day++)
+                {
+                    if(temperatures[day] > highestTemperature)
+                    {
+                        highestTemperature =
+                        temperatures[day];
+                    }
+
+                    if(temperatures[day] < lowestTemperature)
+                    {
+                        lowestTemperature =
+                        temperatures[day];
+                    }
+                }
+
+
+                printf("\n=========================================\n");
+                printf("       TEMPERATURE ANALYSIS\n");
+                printf("=========================================\n");
+
+                printf("Highest Temperature: %.2f C\n",
+                       highestTemperature);
+
+                printf("Lowest Temperature : %.2f C\n",
+                       lowestTemperature);
+
+                break;
+
+
+              //  OPTION 4
+             //   EXIT
+
+            case 4:
+
+                printf("\nThank you for using the\n");
+                printf("Daily Temperature Logger!\n");
+
+                break;
+
+
+         //       INVALID MENU CHOICE
+
+            default:
+
+                printf("\nInvalid choice. Please try again.\n");
+        }
+
+    }
+    while(menuChoice != 4);
+
+
+    return 0;
+}
+
+
