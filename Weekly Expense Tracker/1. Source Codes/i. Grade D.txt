@@ -1,6 +1,4 @@
 
-
-// ASSESSMENT 1 GRADE D PROGRAM 
 #include <stdio.h>
 
 int main()
@@ -12,7 +10,7 @@ int main()
     int total = food + transport + entertainment;
 
     // The output
-    printf("\n==== SOL ASSESSMENT 1 ====\n");
+    printf("\n  ======== GODPASDEM TECHNOLOGIES ========\n");
     printf("====== WEEKLY EXPENSE TRACKER ======\n\n");
 
     printf("=== GRADE D ====\n");
