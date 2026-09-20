@@ -1,7 +1,5 @@
 
-// ASSESSMENT 1 GRADE A 
 #include <stdio.h>
-
 #define MAX 10
 
 int main()
@@ -20,7 +18,7 @@ int main()
 
     int numberOfCategories;
 
-    printf("\n==== SOL ASSESSMENT 1 ====\n");
+    printf("\n  ======== GODPASDEM TECHNOLOGIES ========\n");
     printf("===== WEEKLY EXPENSE TRACKER=====\n\n");
 
     printf("==== GRADE A ======\n");
