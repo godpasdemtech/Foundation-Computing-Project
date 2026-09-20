@@ -1,0 +1,95 @@
+
+#include <stdio.h>
+
+struct Item
+{
+    int id;
+    char assetTag[30];
+    char status;
+};
+
+void addItem()
+{
+    struct Item item;
+
+    FILE *file;
+
+    file = fopen("loans.txt", "a");
+
+    if(file == NULL)
+    {
+        printf("Error opening file.\n");
+        return;
+    }
+
+    printf("\nEnter Equipment ID: ");
+    scanf("%d", &item.id);
+
+    printf("Enter Asset Tag: ");
+    scanf("%29s", item.assetTag);
+
+    printf("Enter Status (A = Available, L = Loaned): ");
+    scanf(" %c", &item.status);
+
+    fprintf(file, "%d %s %c\n",
+            item.id,
+            item.assetTag,
+            item.status);
+
+    fclose(file);
+
+    printf("\nItem added successfully.\n");
+}
+
+void displayItems()
+{
+    struct Item item;
+
+    FILE *file;
+
+    file = fopen("loans.txt", "r");
+
+    if(file == NULL)
+    {
+        printf("\nNo equipment records found.\n");
+        return;
+    }
+
+   printf("\n  ======== GODPASDEM TECHNOLOGIES ========\n");
+    printf("  === MEDIA LAB EQUIPMENT ===\n");
+
+    printf("      ======= GRADE D =======\n\n");
+
+    printf("%-10s %-20s %-10s\n",
+           "ID", "Asset Tag", "Status");
+
+    printf("-----------------------------------------\n");
+
+    while(fscanf(file, "%d %29s %c",
+                 &item.id,
+                 item.assetTag,
+                 &item.status) == 3)
+    {
+        printf("%-10d %-20s %-10c\n",
+               item.id,
+               item.assetTag,
+               item.status);
+    }
+
+    fclose(file);
+}
+
+int main()
+{
+    printf("=========================================\n");
+    printf("       MEDIA LAB LOAN MANAGER\n");
+    printf("=========================================\n");
+
+    addItem();
+    addItem();
+    addItem();
+
+    displayItems();
+
+    return 0;
+}
