@@ -1,0 +1,112 @@
+
+#include <stdio.h>
+
+int main()
+{
+    int currentDay, currentMonth;
+    int eventDay, eventMonth;
+
+    int currentDayNumber = 0;
+    int eventDayNumber = 0;
+
+    int daysRemaining;
+    int i;
+
+    int daysInMonth[12] =
+    {
+        31,28,31,30,
+        31,30,31,31,
+        30,31,30,31
+    };
+
+    printf("\n  ======== SOL ASSESSMENT 4 ========\n");
+    printf("  === EVENT COUNTDOWN PLANNER 2026 ===\n");
+
+    printf("      ======= GRADE C =======\n\n");
+
+
+    printf("Enter Current Day: ");
+    scanf("%d", &currentDay);
+
+    printf("Enter Current Month (1-12): ");
+    scanf("%d", &currentMonth);
+
+    printf("Enter Event Day: ");
+    scanf("%d", &eventDay);
+
+    printf("Enter Event Month (1-12): ");
+    scanf("%d", &eventMonth);
+
+    // Validate Months 
+
+    if(currentMonth < 1 || currentMonth > 12)
+    {
+        printf("\nInvalid Current Month!\n");
+        return 0;
+    }
+
+    if(eventMonth < 1 || eventMonth > 12)
+    {
+        printf("\nInvalid Event Month!\n");
+        return 0;
+    }
+
+    // Validate Days
+
+    if(currentDay < 1 || currentDay > daysInMonth[currentMonth - 1])
+    {
+        printf("\nInvalid Current Day!\n");
+        return 0;
+    }
+
+    if(eventDay < 1 || eventDay > daysInMonth[eventMonth - 1])
+    {
+        printf("\nInvalid Event Day!\n");
+        return 0;
+    }
+
+    // Convert Current Date
+
+    for(i = 0; i < currentMonth - 1; i++)
+    {
+        currentDayNumber += daysInMonth[i];
+    }
+
+    currentDayNumber += currentDay;
+
+    // Convert Event Date
+
+    for(i = 0; i < eventMonth - 1; i++)
+    {
+        eventDayNumber += daysInMonth[i];
+    }
+
+    eventDayNumber += eventDay;
+
+    daysRemaining = eventDayNumber - currentDayNumber;
+
+    printf("\n=====================================\n");
+    printf("EVENT SUMMARY\n");
+    printf("=====================================\n");
+
+    printf("Days Remaining : %d\n", daysRemaining);
+
+    if(daysRemaining < 0)
+    {
+        printf("Status : Already Passed\n");
+    }
+    else if(daysRemaining == 0)
+    {
+        printf("Status : Today!\n");
+    }
+    else if(daysRemaining <= 7)
+    {
+        printf("Status : Coming Soon\n");
+    }
+    else
+    {
+        printf("Status : Later in the Year\n");
+    }
+
+    return 0;
+}
