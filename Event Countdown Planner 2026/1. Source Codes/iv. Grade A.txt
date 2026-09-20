@@ -1,0 +1,435 @@
+
+#include <stdio.h>
+int main()
+{
+    
+     //   VARIABLE DECLARATIONS
+    
+    int currentDay;
+    int currentMonth;
+    int currentDayNumber;
+    int numberOfEvents = 0;
+    int currentEvent = 0;
+    int menuChoice;
+    int monthCounter;
+    int daysRemaining;
+    int eventDayNumber;
+    int weekDayIndex;
+    char eventName[10][50];
+    int eventDay[10];
+    int eventMonth[10];
+    int daysInMonth[12] =
+    {
+        31,28,31,30,
+        31,30,31,31,
+        30,31,30,31
+    };
+
+    char weekDays[7][10] =
+    {
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+    };
+    
+    printf("\n  ======== SOL ASSESSMENT 4 ========\n");
+    printf("  === EVENT COUNTDOWN PLANNER 2026 ===\n");
+
+    printf("      ======= GRADE A =======\n\n");
+
+    // ENTER NUMBER OF EVENTS
+    
+    do
+    {
+        printf("How many events would you like to enter (1 - 10)? ");
+        scanf("%d", &numberOfEvents);
+
+        if(numberOfEvents < 1 || numberOfEvents > 10)
+        {
+            printf("\nInvalid number of events!\n");
+            printf("Please enter a number between 1 and 10.\n\n");
+        }
+
+    }
+    while(numberOfEvents < 1 || numberOfEvents > 10);
+
+    // ENTER EVENT DETAILS
+
+    for(currentEvent = 0;
+        currentEvent < numberOfEvents;
+        currentEvent++)
+    {
+        printf("\n=========================================\n");
+        printf("            EVENT %d\n", currentEvent + 1);
+        printf("=========================================\n");
+
+        // Enter Event Name
+
+        printf("Enter Event Name: ");
+        scanf(" %[^\n]", eventName[currentEvent]);
+
+        // Enter Event Month
+
+        do
+        {
+            printf("Enter Event Month (1 - 12): ");
+            scanf("%d", &eventMonth[currentEvent]);
+
+            if(eventMonth[currentEvent] < 1 ||
+               eventMonth[currentEvent] > 12)
+            {
+                printf("Invalid Month!\n");
+            }
+
+        }
+        while(eventMonth[currentEvent] < 1 ||
+              eventMonth[currentEvent] > 12);
+
+        // Enter Event Day
+
+        do
+        {
+            printf("Enter Event Day: ");
+            scanf("%d", &eventDay[currentEvent]);
+
+            if(eventDay[currentEvent] < 1 ||
+               eventDay[currentEvent] >
+               daysInMonth[eventMonth[currentEvent] - 1])
+            {
+                printf("Invalid Day for this month!\n");
+            }
+
+        }
+        while(eventDay[currentEvent] < 1 ||
+              eventDay[currentEvent] >
+              daysInMonth[eventMonth[currentEvent] - 1]);
+
+        printf("Event Saved Successfully!\n");
+    }
+
+
+    // ENTER CURRENT DATE
+    printf("\n=========================================\n");
+    printf("         CURRENT DATE\n");
+    printf("=========================================\n");
+
+    // Enter Current Month
+
+    do
+    {
+        printf("Enter Current Month (1 - 12): ");
+        scanf("%d", &currentMonth);
+
+        if(currentMonth < 1 || currentMonth > 12)
+        {
+            printf("Invalid Month!\n");
+        }
+
+    }
+    while(currentMonth < 1 || currentMonth > 12);
+
+    // Enter Current Day
+
+    do
+    {
+        printf("Enter Current Day: ");
+        scanf("%d", &currentDay);
+
+        if(currentDay < 1 ||
+           currentDay > daysInMonth[currentMonth - 1])
+        {
+            printf("Invalid Day for this month!\n");
+        }
+
+    }
+    while(currentDay < 1 ||
+          currentDay > daysInMonth[currentMonth - 1]);
+
+
+    // DISPLAY FIRST EVENT
+
+    currentEvent = 0;
+
+    eventDayNumber = 0;
+
+    for(monthCounter = 0;
+        monthCounter < eventMonth[currentEvent] - 1;
+        monthCounter++)
+    {
+        eventDayNumber =
+        eventDayNumber +
+        daysInMonth[monthCounter];
+    }
+
+    eventDayNumber =
+    eventDayNumber +
+    eventDay[currentEvent];
+
+    daysRemaining =
+    eventDayNumber -
+    currentDayNumber;
+
+    // Calculate Weekday
+
+    weekDayIndex =
+    (eventDayNumber + 2) % 7;
+
+    printf("\n=========================================\n");
+    printf("            EVENT DETAILS\n");
+    printf("=========================================\n");
+
+    printf("Event Name      : %s\n",
+           eventName[currentEvent]);
+
+    printf("Event Date      : %02d/%02d/2026\n",
+           eventDay[currentEvent],
+           eventMonth[currentEvent]);
+
+    printf("Weekday         : %s\n",
+           weekDays[weekDayIndex]);
+
+    printf("Days Remaining  : %d\n",
+           daysRemaining);
+
+
+    if(daysRemaining < 0)
+    {
+        printf("Status          : Already Passed\n");
+    }
+    else if(daysRemaining == 0)
+    {
+        printf("Status          : * EVENT IS TODAY *\n");
+    }
+    else if(daysRemaining <= 7)
+    {
+        printf("Status          : * URGENT EVENT *\n");
+    }
+    else
+    {
+        printf("Status          : Later In The Year\n");
+    }
+
+    // EVENT NAVIGATION MENU
+
+    do
+    {
+        printf("\n=========================================\n");
+        printf("              EVENT MENU\n");
+        printf("=========================================\n");
+
+        printf("1. View Next Event\n");
+        printf("2. View Previous Event\n");
+        printf("3. Add Another Event\n");
+        printf("4. Exit\n");
+
+        printf("\nEnter your choice: ");
+        scanf("%d", &menuChoice);
+
+        switch(menuChoice)
+        {
+
+// Case 1
+        case 1:
+
+            if(currentEvent == numberOfEvents - 1)
+            {
+                printf("\nYou are already viewing the last event.\n");
+            }
+            else
+            {
+                currentEvent++;
+
+                eventDayNumber = 0;
+
+                for(monthCounter = 0;
+                    monthCounter < eventMonth[currentEvent] - 1;
+                    monthCounter++)
+                {
+                    eventDayNumber =
+                    eventDayNumber +
+                    daysInMonth[monthCounter];
+                }
+
+                eventDayNumber =
+                eventDayNumber +
+                eventDay[currentEvent];
+
+                daysRemaining =
+                eventDayNumber -
+                currentDayNumber;
+
+                weekDayIndex =
+                (eventDayNumber + 2) % 7;
+
+                printf("\n=========================================\n");
+                printf("            EVENT DETAILS\n");
+                printf("=========================================\n");
+
+                printf("Event Name      : %s\n",
+                       eventName[currentEvent]);
+
+                printf("Event Date      : %02d/%02d/2026\n",
+                       eventDay[currentEvent],
+                       eventMonth[currentEvent]);
+
+                printf("Weekday         : %s\n",
+                       weekDays[weekDayIndex]);
+
+                printf("Days Remaining  : %d\n",
+                       daysRemaining);
+
+                if(daysRemaining < 0)
+                    printf("Status          : Already Passed\n");
+                else if(daysRemaining == 0)
+                    printf("Status          : * EVENT IS TODAY *\n");
+                else if(daysRemaining <= 7)
+                    printf("Status          : * URGENT EVENT *\n");
+                else
+                    printf("Status          : Later In The Year\n");
+            }
+
+            break;
+
+
+// Case 2
+        case 2:
+
+            if(currentEvent == 0)
+            {
+                printf("\nYou are already viewing the first event.\n");
+            }
+            else
+            {
+                currentEvent--;
+
+                eventDayNumber = 0;
+
+                for(monthCounter = 0;
+                    monthCounter < eventMonth[currentEvent] - 1;
+                    monthCounter++)
+                {
+                    eventDayNumber =
+                    eventDayNumber +
+                    daysInMonth[monthCounter];
+                }
+
+                eventDayNumber =
+                eventDayNumber +
+                eventDay[currentEvent];
+
+                daysRemaining =
+                eventDayNumber -
+                currentDayNumber;
+
+                weekDayIndex =
+                (eventDayNumber + 2) % 7;
+
+                printf("\n=========================================\n");
+                printf("            EVENT DETAILS\n");
+                printf("=========================================\n");
+
+                printf("Event Name      : %s\n",
+                       eventName[currentEvent]);
+
+                printf("Event Date      : %02d/%02d/2026\n",
+                       eventDay[currentEvent],
+                       eventMonth[currentEvent]);
+
+                printf("Weekday         : %s\n",
+                       weekDays[weekDayIndex]);
+
+                printf("Days Remaining  : %d\n",
+                       daysRemaining);
+
+                if(daysRemaining < 0)
+                    printf("Status          : Already Passed\n");
+                else if(daysRemaining == 0)
+                    printf("Status          : * EVENT IS TODAY *\n");
+                else if(daysRemaining <= 7)
+                    printf("Status          : * URGENT EVENT *\n");
+                else
+                    printf("Status          : Later In The Year\n");
+            }
+
+            break;
+
+
+// Case 3
+        case 3:
+
+            if(numberOfEvents == 10)
+            {
+                printf("\nYou cannot add more events.\n");
+            }
+            else
+            {
+                printf("\nEnter Event Name: ");
+                scanf(" %[^\n]", eventName[numberOfEvents]);
+
+                do
+                {
+                    printf("Enter Event Month (1 - 12): ");
+                    scanf("%d", &eventMonth[numberOfEvents]);
+
+                    if(eventMonth[numberOfEvents] < 1 ||
+                       eventMonth[numberOfEvents] > 12)
+                    {
+                        printf("Invalid Month!\n");
+                    }
+
+                }
+                while(eventMonth[numberOfEvents] < 1 ||
+                      eventMonth[numberOfEvents] > 12);
+
+                do
+                {
+                    printf("Enter Event Day: ");
+                    scanf("%d", &eventDay[numberOfEvents]);
+
+                    if(eventDay[numberOfEvents] < 1 ||
+                       eventDay[numberOfEvents] >
+                       daysInMonth[eventMonth[numberOfEvents]-1])
+                    {
+                        printf("Invalid Day!\n");
+                    }
+
+                }
+                while(eventDay[numberOfEvents] < 1 ||
+                      eventDay[numberOfEvents] >
+                      daysInMonth[eventMonth[numberOfEvents]-1]);
+
+                numberOfEvents++;
+
+                printf("\nNew Event Added Successfully!\n");
+            }
+
+            break;
+
+
+// Case 4
+        case 4:
+
+            printf("\n=========================================\n");
+            printf("Thank You For Using\n");
+            printf("EVENT COUNTDOWN PLANNER 2026\n");
+            printf("=========================================\n");
+
+            break;
+
+
+// Default
+        default:
+
+            printf("\nInvalid Menu Choice!\n");
+        }
+
+    }
+    while(menuChoice != 4);
+
+    return 0;
+}
+
