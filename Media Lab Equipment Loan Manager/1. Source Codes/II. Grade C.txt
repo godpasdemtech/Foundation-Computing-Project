@@ -1,0 +1,181 @@
+
+#include <stdio.h>
+#include <string.h>
+
+struct Item
+{
+    int id;
+    char assetTag[30];
+    char status;
+};
+
+void addItem(int id, char assetTag[], char status[])
+{
+    FILE *file;
+
+    file = fopen("loans.txt", "a");
+
+    if(file == NULL)
+    {
+        printf("Error opening file.\n");
+        return;
+    }
+
+    fprintf(file, "%d %s %c\n",
+            id,
+            assetTag,
+            status[0]);
+
+    fclose(file);
+
+    printf("\nItem added successfully.\n");
+}
+
+int searchItemById(int id)
+{
+    FILE *file;
+
+    struct Item item;
+
+    file = fopen("loans.txt", "r");
+
+    if(file == NULL)
+    {
+        return 0;
+    }
+
+    while(fscanf(file, "%d %29s %c",
+                 &item.id,
+                 item.assetTag,
+                 &item.status) == 3)
+    {
+        if(item.id == id)
+        {
+            fclose(file);
+            return 1;
+        }
+    }
+
+    fclose(file);
+
+    return 0;
+}
+
+void displayItems()
+{
+    FILE *file;
+
+    struct Item item;
+
+    file = fopen("loans.txt", "r");
+
+    if(file == NULL)
+    {
+        printf("\nNo equipment records found.\n");
+        return;
+    }
+
+    printf("\n  ======== GODPASDEM TECHNOLOGIES ========\n");
+    printf("  === MEDIA LAB LOAN MANAGER ===\n");
+
+    printf("      ======= GRADE C =======\n\n");
+
+    printf("%-10s %-20s %-10s\n",
+           "ID", "Asset Tag", "Status");
+
+    printf("-----------------------------------------\n");
+
+    while(fscanf(file, "%d %29s %c",
+                 &item.id,
+                 item.assetTag,
+                 &item.status) == 3)
+    {
+        printf("%-10d %-20s %-10c\n",
+               item.id,
+               item.assetTag,
+               item.status);
+    }
+
+    fclose(file);
+}
+
+int main()
+{
+    int id;
+    char assetTag[30];
+    char status[2];
+
+    printf("=========================================\n");
+    printf("       MEDIA LAB LOAN MANAGER\n");
+    printf("=========================================\n");
+
+    
+      // FIRST ITEM
+    
+
+    printf("\nEnter Equipment ID: ");
+    scanf("%d", &id);
+
+    printf("Enter Asset Tag: ");
+    scanf("%29s", assetTag);
+
+    printf("Enter Status (A = Available, L = Loaned): ");
+    scanf("%1s", status);
+
+    if(searchItemById(id) == 1)
+    {
+        printf("\nError: ID already exists.\n");
+    }
+    else
+    {
+        addItem(id, assetTag, status);
+    }
+
+    
+     //  SECOND ITEM
+    
+
+    printf("\nEnter Equipment ID: ");
+    scanf("%d", &id);
+
+    printf("Enter Asset Tag: ");
+    scanf("%29s", assetTag);
+
+    printf("Enter Status (A = Available, L = Loaned): ");
+    scanf("%1s", status);
+
+    if(searchItemById(id) == 1)
+    {
+        printf("\nError: ID already exists.\n");
+    }
+    else
+    {
+        addItem(id, assetTag, status);
+    }
+
+    
+     //  THIRD ITEM
+   
+
+    printf("\nEnter Equipment ID: ");
+    scanf("%d", &id);
+
+    printf("Enter Asset Tag: ");
+    scanf("%29s", assetTag);
+
+    printf("Enter Status (A = Available, L = Loaned): ");
+    scanf("%1s", status);
+
+    if(searchItemById(id) == 1)
+    {
+        printf("\nError: ID already exists.\n");
+    }
+    else
+    {
+        addItem(id, assetTag, status);
+    }
+
+    displayItems();
+
+    return 0;
+}
