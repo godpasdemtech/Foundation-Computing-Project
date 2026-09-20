@@ -1,2 +1,98 @@
 
-sdff
+#include <stdio.h>
+
+int main()
+{
+    // Declare variables
+    char movieType;
+    char ticketType;
+    float ticketPrice;
+
+    // Fixed values (No user input)
+    movieType = 'A';      // Action
+    ticketType = 'S';     // Standard Seat
+
+    // Determine ticket price using switch statement
+    switch (movieType)
+    {
+        case 'A':
+            if (ticketType == 'S')
+            {
+                ticketPrice = 10.00;
+            }
+            else
+            {
+                ticketPrice = 15.00;
+            }
+            break;
+
+        case 'C':
+            if (ticketType == 'S')
+            {
+                ticketPrice = 8.00;
+            }
+            else
+            {
+                ticketPrice = 13.00;
+            }
+            break;
+
+        case 'H':
+            if (ticketType == 'S')
+            {
+                ticketPrice = 9.00;
+            }
+            else
+            {
+                ticketPrice = 14.00;
+            }
+            break;
+
+        default:
+            printf("Invalid Movie Type!\n");
+            return 0;
+    }
+
+    // DISPLAY OUPTPUT 
+printf("\n==== SOL ASSESSMENT 2 ====\n");
+    printf("===== CINEMA TICKET BOOKING SYSTEM =====\n\n");
+
+    printf("==== GRADE D ======\n");
+
+    
+       //Display Movie Type
+
+    switch(movieType)
+    {
+        case 'A':
+            printf("Movie Type  : Action\n");
+            break;
+
+        case 'C':
+            printf("Movie Type  : Comedy\n");
+            break;
+
+        case 'H':
+            printf("Movie Type  : Horror\n");
+            break;
+    }
+
+    // Display Ticket Type
+    switch(ticketType)
+    {
+        case 'S':
+            printf("Ticket Type : Standard Seat\n");
+            break;
+
+        case 'P':
+            printf("Ticket Type : Premium Seat\n");
+            break;
+    }
+
+    // Display Ticket Price
+    printf("Ticket Price: £%.2f\n", ticketPrice);
+
+    return 0;
+}
+
+
