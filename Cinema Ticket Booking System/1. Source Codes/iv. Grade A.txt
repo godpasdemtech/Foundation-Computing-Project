@@ -4,21 +4,25 @@
 
 int main()
 {
-    int choice;
-    char movieType, ticketType, snackChoice;
-    int tickets;
+    char movieType; 
+    char ticketType; 
+    char SnackDecision;
+    int NumOfTickets;
 
     float ticketPrice;
     float totalBeforeDiscount;
     float discount;
     float snackCost;
     float finalTotal;
+    int choice;
+        
+        printf("\n       ======    SOL ASSESSMENT 2    ======\n");
+     printf("       ======       GRADE A          ======\n");
+     
 
     do
     {
-       printf("\n    ==== SOL ASSESSMENT 2    ====\n");
-     printf("     ==== GRADE B    ====\n");
- printf("\n=========================================\n");
+        printf("\n=========================================\n");
         printf("      CINEMA TICKET BOOKING SYSTEM\n");
         printf("=========================================\n");
         printf("1. Book Tickets\n");
@@ -39,9 +43,9 @@ int main()
                 scanf(" %c", &ticketType);
 
                 printf("Number of Tickets: ");
-                scanf("%d", &tickets);
+                scanf("%d", &NumOfTickets);
 
-                if(tickets <= 0)
+                if(NumOfTickets <= 0)
                 {
                     printf("\nInvalid Ticket Count!\n");
                     break;
@@ -99,23 +103,23 @@ int main()
                         break;
                 }
 
-                totalBeforeDiscount = ticketPrice * tickets;
+                totalBeforeDiscount = ticketPrice * NumOfTickets;
 
                 discount = 0;
 
-                if(tickets > 6)
+                if(NumOfTickets > 6)
                 {
                     discount = totalBeforeDiscount * 0.10;
                 }
 
-                printf("Snack Combo (y/n): ");
-                scanf(" %c", &snackChoice);
+                printf(" Need a Snack Combo (y/n): ");
+                scanf(" %c", &SnackDecision);
 
-                if(snackChoice=='y' || snackChoice=='Y')
+                if(SnackDecision=='y' || SnackDecision=='Y')
                 {
-                    snackCost = tickets * 5.50;
+                    snackCost = NumOfTickets * 5.50;
                 }
-                else if(snackChoice=='n' || snackChoice=='N')
+                else if(SnackDecision=='n' || SnackDecision=='N')
                 {
                     snackCost = 0;
                 }
@@ -127,7 +131,9 @@ int main()
 
                 finalTotal = totalBeforeDiscount - discount + snackCost;
 
-                printf("\n============= BOOKING SUMMARY =============\n");
+ // THE OUTPUT SUMMARY DISPLAY
+ 
+                printf("\n============= BOOKING RESULT =============\n");
 
                 switch(movieType)
                 {
@@ -160,7 +166,7 @@ int main()
                         break;
                 }
 
-                printf("Quantity              : %d\n", tickets);
+                printf("Number of Tickets     : %d\n", NumOfTickets);
                 printf("Total Before Discount : £%.2f\n", totalBeforeDiscount);
                 printf("Discount Amount       : £%.2f\n", discount);
                 printf("Snack Combo Cost      : £%.2f\n", snackCost);
@@ -172,18 +178,19 @@ int main()
 
                 printf("\n=========== TICKET PRICE TABLE ===========\n");
                 printf("------------------------------------------\n");
-                printf("Movie      Standard     Premium\n");
+                printf("MovieType      StandardSeat     PremiumSeat\n");
                 printf("------------------------------------------\n");
-                printf("Action     £10.00       £15.00\n");
-                printf("Comedy     £8.00        £13.00\n");
-                printf("Horror     £9.00        £14.00\n");
+                printf("Action            £10.00          £15.00\n");
+                printf("Comedy            £8.00           £13.00\n");
+                printf("Horror            £9.00           £14.00\n");
 
                 break;
 
             case 3:
 
-                printf("\nThank you for using the Cinema Ticket Booking System.\n");
-                printf("Goodbye!\n");
+                printf("\n   Thank you for using the Cinema Ticket\n");
+                printf("             Booking System.\n");
+                printf("                Goodbye!\n");
 
                 break;
 
