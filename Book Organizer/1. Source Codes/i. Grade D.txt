@@ -1,5 +1,4 @@
 
-//ASSESSMENT 6 GRADE D
 #include <stdio.h>
 
 int main()
