@@ -1,0 +1,418 @@
+
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_ITEMS 100
+#define FILENAME "loans.txt"
+
+struct Item
+{
+    int id;
+    char assetTag[30];
+    char status;
+};
+
+// Function prototypes
+
+int loadItems(struct Item items[]);
+void saveItems(struct Item items[], int count);
+
+int addItem(struct Item items[], int *count,
+            int id, char assetTag[], char status[]);
+
+void displayItems(struct Item items[], int count);
+
+int searchItemById(struct Item items[], int count, int id);
+
+int updateItem(struct Item items[], int count,
+               int id, const char newAssetTag[],
+               const char newStatus[]);
+
+int deleteItem(struct Item items[], int *count, int id);
+
+
+
+// LOAD ITEMS FROM FILE          
+
+int loadItems(struct Item items[])
+{
+    FILE *file;
+    int count = 0;
+
+    file = fopen(FILENAME, "r");
+
+    if(file == NULL)
+    {
+        return 0;
+    }
+
+    while(count < MAX_ITEMS &&
+          fscanf(file, "%d %29s %c",
+                 &items[count].id,
+                 items[count].assetTag,
+                 &items[count].status) == 3)
+    {
+        count++;
+    }
+
+    fclose(file);
+
+    return count;
+}
+
+
+// SAVE ITEMS TO FILE            
+
+void saveItems(struct Item items[], int count)
+{
+    FILE *file;
+    int i;
+
+    file = fopen(FILENAME, "w");
+
+    if(file == NULL)
+    {
+        printf("\nError: Could not save data.\n");
+        return;
+    }
+
+    for(i = 0; i < count; i++)
+    {
+        fprintf(file, "%d %s %c\n",
+                items[i].id,
+                items[i].assetTag,
+                items[i].status);
+    }
+
+    fclose(file);
+
+    printf("\nData saved successfully.\n");
+}
+
+
+// SEARCH ITEM                   
+
+
+int searchItemById(struct Item items[], int count, int id)
+{
+    int i;
+
+    for(i = 0; i < count; i++)
+    {
+        if(items[i].id == id)
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+
+
+// ADD ITEM                      
+
+
+int addItem(struct Item items[], int *count,
+            int id, char assetTag[], char status[])
+{
+    int position;
+
+    position = searchItemById(items, *count, id);
+
+    if(position != -1)
+    {
+        return 0;
+    }
+
+    if(*count >= MAX_ITEMS)
+    {
+        return 0;
+    }
+
+    items[*count].id = id;
+
+    strcpy(items[*count].assetTag, assetTag);
+
+    items[*count].status = status[0];
+
+    (*count)++;
+
+    return 1;
+}
+
+
+
+// DISPLAY ITEMS                 
+
+
+void displayItems(struct Item items[], int count)
+{
+    int i;
+
+    if(count == 0)
+    {
+        printf("\nNo equipment records found.\n");
+        return;
+    }
+
+    printf("\n  ======== GODPASDEM TECHNOLOGIES ========\n");
+    printf("  === MEDIA LAB LOAN MANAGER ===\n");
+
+    printf("      ======= GRADE A =======\n\n");
+
+
+    printf("%-10s %-20s %-10s\n",
+           "ID", "Asset Tag", "Status");
+
+    printf("-----------------------------------------\n");
+
+    for(i = 0; i < count; i++)
+    {
+        printf("%-10d %-20s %-10c\n",
+               items[i].id,
+               items[i].assetTag,
+               items[i].status);
+    }
+}
+
+
+
+// UPDATE ITEM 
+                 
+int updateItem(struct Item items[], int count,
+               int id, const char newAssetTag[],
+               const char newStatus[])
+{
+    int position;
+
+    position = searchItemById(items, count, id);
+
+    if(position == -1)
+    {
+        return 0;
+    }
+
+    strcpy(items[position].assetTag, newAssetTag);
+
+    items[position].status = newStatus[0];
+
+    return 1;
+}
+
+
+
+// DELETE ITEM                   
+
+
+
+int deleteItem(struct Item items[], int *count, int id)
+{
+    int position;
+    int i;
+
+    position = searchItemById(items, *count, id);
+
+    if(position == -1)
+    {
+        return 0;
+    }
+
+    for(i = position; i < *count - 1; i++)
+    {
+        items[i] = items[i + 1];
+    }
+
+    (*count)--;
+
+    return 1;
+}
+
+
+// MAIN PROGRAM BEGINS                 
+
+int main()
+{
+    struct Item items[MAX_ITEMS];
+
+    int count;
+    int choice;
+    int id;
+    int result;
+
+    char assetTag[30];
+    char status[2];
+
+    // Load existing records when program starts 
+
+    count = loadItems(items);
+
+    printf("=========================================\n");
+    printf("       MEDIA LAB LOAN MANAGER\n");
+    printf("=========================================\n");
+
+    printf("\n%d record(s) loaded from file.\n", count);
+
+
+    do
+    {
+        printf("\n=========================================\n");
+        printf("                 MENU\n");
+        printf("=========================================\n");
+
+        printf("1. Add Equipment\n");
+        printf("2. View Equipment\n");
+        printf("3. Search Equipment\n");
+        printf("4. Update Equipment\n");
+        printf("5. Delete Equipment\n");
+        printf("6. Save Data\n");
+        printf("7. Exit\n");
+
+        printf("\nEnter your choice: ");
+        scanf("%d", &choice);
+
+
+        // ADD PROGRAM                           
+        
+
+        if(choice == 1)
+        {
+            printf("\nEnter Equipment ID: ");
+            scanf("%d", &id);
+
+            printf("Enter Asset Tag: ");
+            scanf("%29s", assetTag);
+
+            printf("Enter Status (A = Available, L = Loaned): ");
+            scanf("%1s", status);
+
+            result = addItem(items, &count,
+                             id, assetTag, status);
+
+            if(result == 1)
+            {
+                printf("\nItem added successfully.\n");
+            }
+            else
+            {
+                printf("\nItem could not be added.\n");
+                printf("The ID may already exist or the list is full.\n");
+            }
+        }
+
+
+        // VIEW PROGRAM          
+                
+        
+        else if(choice == 2)
+        {
+            displayItems(items, count);
+        }
+
+
+        // SEARCH PROGRAM                        
+        
+
+        else if(choice == 3)
+        {
+            printf("\nEnter ID to search for: ");
+            scanf("%d", &id);
+
+            result = searchItemById(items, count, id);
+
+            if(result != -1)
+            {
+                printf("\nItem found!\n");
+                printf("ID        : %d\n", items[result].id);
+                printf("Asset Tag : %s\n", items[result].assetTag);
+                printf("Status    : %c\n", items[result].status);
+            }
+            else
+            {
+                printf("\nItem not found.\n");
+            }
+        }
+
+
+        // UPDATE PROGRAM                        
+        
+
+        else if(choice == 4)
+        {
+            printf("\nEnter ID to update: ");
+            scanf("%d", &id);
+
+            printf("Enter new Asset Tag: ");
+            scanf("%29s", assetTag);
+
+            printf("Enter new Status (A = Available, L = Loaned): ");
+            scanf("%1s", status);
+
+            result = updateItem(items, count,
+                                id, assetTag, status);
+
+            if(result == 1)
+            {
+                printf("\nItem updated successfully.\n");
+            }
+            else
+            {
+                printf("\nItem not found. Nothing was updated.\n");
+            }
+        }
+
+
+      
+        // DELETE PROGRAM                 
+        
+
+        else if(choice == 5)
+        {
+            printf("\nEnter ID to delete: ");
+            scanf("%d", &id);
+
+            result = deleteItem(items, &count, id);
+
+            if(result == 1)
+            {
+                printf("\nItem deleted successfully.\n");
+            }
+            else
+            {
+                printf("\nItem not found. Nothing was deleted.\n");
+            }
+        }
+
+
+        // SAVE PROGRAM                    
+
+
+        else if(choice == 6)
+        {
+            saveItems(items, count);
+        }
+
+
+        
+        // EXIT PROGRAM                      
+        
+
+        else if(choice == 7)
+        {
+            saveItems(items, count);
+
+            printf("\nExiting program...\n");
+        }
+
+
+        else
+        {
+            printf("\nInvalid choice. Please select 1-7.\n");
+        }
+
+    } while(choice != 7);
+
+
+    return 0;
+}
+
