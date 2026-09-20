@@ -1,0 +1,198 @@
+
+
+#include <stdio.h>
+
+int main()
+{
+    int choice;
+    char movieType, ticketType, snackChoice;
+    int tickets;
+
+    float ticketPrice;
+    float totalBeforeDiscount;
+    float discount;
+    float snackCost;
+    float finalTotal;
+
+    do
+    {
+       printf("\n    ==== SOL ASSESSMENT 2    ====\n");
+     printf("     ==== GRADE B    ====\n");
+ printf("\n=========================================\n");
+        printf("      CINEMA TICKET BOOKING SYSTEM\n");
+        printf("=========================================\n");
+        printf("1. Book Tickets\n");
+        printf("2. View Ticket Prices\n");
+        printf("3. Exit\n");
+        printf("-----------------------------------------\n");
+        printf("Enter Choice: ");
+        scanf("%d", &choice);
+
+        switch(choice)
+        {
+            case 1:
+
+                printf("\nMovie Type (A=Action, C=Comedy, H=Horror): ");
+                scanf(" %c", &movieType);
+
+                printf("Ticket Type (S=Standard, P=Premium): ");
+                scanf(" %c", &ticketType);
+
+                printf("Number of Tickets: ");
+                scanf("%d", &tickets);
+
+                if(tickets <= 0)
+                {
+                    printf("\nInvalid Ticket Count!\n");
+                    break;
+                }
+
+                switch(movieType)
+                {
+                    case 'A':
+                    case 'a':
+
+                        if(ticketType=='S' || ticketType=='s')
+                            ticketPrice = 10.00;
+                        else if(ticketType=='P' || ticketType=='p')
+                            ticketPrice = 15.00;
+                        else
+                        {
+                            printf("\nInvalid Ticket Type!\n");
+                            break;
+                        }
+
+                        break;
+
+                    case 'C':
+                    case 'c':
+
+                        if(ticketType=='S' || ticketType=='s')
+                            ticketPrice = 8.00;
+                        else if(ticketType=='P' || ticketType=='p')
+                            ticketPrice = 13.00;
+                        else
+                        {
+                            printf("\nInvalid Ticket Type!\n");
+                            break;
+                        }
+
+                        break;
+
+                    case 'H':
+                    case 'h':
+
+                        if(ticketType=='S' || ticketType=='s')
+                            ticketPrice = 9.00;
+                        else if(ticketType=='P' || ticketType=='p')
+                            ticketPrice = 14.00;
+                        else
+                        {
+                            printf("\nInvalid Ticket Type!\n");
+                            break;
+                        }
+
+                        break;
+
+                    default:
+                        printf("\nInvalid Movie Type!\n");
+                        break;
+                }
+
+                totalBeforeDiscount = ticketPrice * tickets;
+
+                discount = 0;
+
+                if(tickets > 6)
+                {
+                    discount = totalBeforeDiscount * 0.10;
+                }
+
+                printf("Snack Combo (y/n): ");
+                scanf(" %c", &snackChoice);
+
+                if(snackChoice=='y' || snackChoice=='Y')
+                {
+                    snackCost = tickets * 5.50;
+                }
+                else if(snackChoice=='n' || snackChoice=='N')
+                {
+                    snackCost = 0;
+                }
+                else
+                {
+                    printf("\nInvalid Snack Choice!\n");
+                    break;
+                }
+
+                finalTotal = totalBeforeDiscount - discount + snackCost;
+
+                printf("\n============= BOOKING SUMMARY =============\n");
+
+                switch(movieType)
+                {
+                    case 'A':
+                    case 'a':
+                        printf("Movie Type            : Action\n");
+                        break;
+
+                    case 'C':
+                    case 'c':
+                        printf("Movie Type            : Comedy\n");
+                        break;
+
+                    case 'H':
+                    case 'h':
+                        printf("Movie Type            : Horror\n");
+                        break;
+                }
+
+                switch(ticketType)
+                {
+                    case 'S':
+                    case 's':
+                        printf("Ticket Type           : Standard Seat\n");
+                        break;
+
+                    case 'P':
+                    case 'p':
+                        printf("Ticket Type           : Premium Seat\n");
+                        break;
+                }
+
+                printf("Quantity              : %d\n", tickets);
+                printf("Total Before Discount : £%.2f\n", totalBeforeDiscount);
+                printf("Discount Amount       : £%.2f\n", discount);
+                printf("Snack Combo Cost      : £%.2f\n", snackCost);
+                printf("Final Total           : £%.2f\n", finalTotal);
+
+                break;
+
+            case 2:
+
+                printf("\n=========== TICKET PRICE TABLE ===========\n");
+                printf("------------------------------------------\n");
+                printf("Movie      Standard     Premium\n");
+                printf("------------------------------------------\n");
+                printf("Action     £10.00       £15.00\n");
+                printf("Comedy     £8.00        £13.00\n");
+                printf("Horror     £9.00        £14.00\n");
+
+                break;
+
+            case 3:
+
+                printf("\nThank you for using the Cinema Ticket Booking System.\n");
+                printf("Goodbye!\n");
+
+                break;
+
+            default:
+
+                printf("\nInvalid Menu Choice!\n");
+        }
+
+    } while(choice != 3);
+
+    return 0;
+}
