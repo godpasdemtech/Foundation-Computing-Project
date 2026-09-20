@@ -31,7 +31,7 @@ int main()
     float weeklyAverage;
 
 
-printf("\n  ======== SOL ASSESSMENT 5 ========\n");
+printf("\n  ======== GODPASDEM TECHNOLOGIES ========\n");
     printf("  === DAILY TEMPERATURE LOGGER  ===\n");
 
     printf("      ======= GRADE B =======\n\n");
