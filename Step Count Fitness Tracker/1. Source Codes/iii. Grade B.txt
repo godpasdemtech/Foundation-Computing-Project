@@ -1,0 +1,109 @@
+
+#include <stdio.h>
+
+int main()
+{
+    int choice;
+    int steps;
+    int totalSteps = 0;
+
+    float kilometres;
+    float minutes;
+
+    float totalKilometres = 0.0;
+    float totalCalories = 0.0;
+
+    int stepEntries = 0;
+    int kilometreEntries = 0;
+    int minuteEntries = 0;
+
+    float calories;
+    char again;
+
+    printf("\n  ======== GODPASDEM TECHNOLOGIES ========\n");
+    printf("  === STEP COUNT FITNESS TRACKER ===\n");
+    printf("     ====== LOOP CHALLENGE =======\n\n");
+
+    printf("      ======= GRADE B =======\n");
+
+
+    do
+    {
+        printf("\nWhat would you like to add?\n");
+        printf("1. Steps\n");
+        printf("2. Kilometres\n");
+        printf("3. Walking Minutes\n");
+
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch(choice)
+        {
+            case 1:
+
+                printf("Enter Steps: ");
+                scanf("%d", &steps);
+
+                stepEntries++;
+
+                break;
+
+            case 2:
+
+                printf("Enter Kilometres: ");
+                scanf("%f", &kilometres);
+
+                steps = kilometres * 1250;
+
+                kilometreEntries++;
+
+                break;
+
+            case 3:
+
+                printf("Enter Walking Minutes: ");
+                scanf("%f", &minutes);
+
+                steps = minutes * 100;
+
+                minuteEntries++;
+
+                break;
+
+            default:
+
+                printf("\nInvalid Menu Choice!\n");
+                continue;
+        }
+
+        calories = (steps / 1000.0) * 40;
+
+        totalSteps += steps;
+        totalKilometres = totalSteps / 1250.0;
+        totalCalories = (totalSteps / 1000.0) * 40;
+
+        printf("\nAdded %d steps.\n", steps);
+
+        printf("\nAdd another entry? (y/n): ");
+        scanf(" %c", &again);
+
+    }
+    while(again == 'y' || again == 'Y');
+
+    printf("\n=====================================\n");
+    printf(" FITNESS TRACKER SUMMARY\n");
+    printf("=====================================\n");
+
+    printf("Total Steps        : %d\n", totalSteps);
+    printf("Total Distance     : %.2f km\n", totalKilometres);
+    printf("Total Calories     : %.2f kcal\n", totalCalories);
+
+    printf("\nEntries Recorded\n");
+    printf("----------------------------\n");
+
+    printf("Steps             : %d\n", stepEntries);
+    printf("Kilometres        : %d\n", kilometreEntries);
+    printf("Walking Minutes   : %d\n", minuteEntries);
+
+    return 0;
+}
