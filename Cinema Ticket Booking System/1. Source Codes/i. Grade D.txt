@@ -54,7 +54,7 @@ int main()
     }
 
     // DISPLAY OUPTPUT 
-printf("\n==== SOL ASSESSMENT 2 ====\n");
+printf("\n  ======== GODPASDEM TECHNOLOGIES ========\n");
     printf("===== CINEMA TICKET BOOKING SYSTEM =====\n\n");
 
     printf("==== GRADE D ======\n");
