@@ -1,0 +1,56 @@
+
+// ASSESSMENT 1 GRADE B
+#include <stdio.h>
+
+int main()
+{
+    //I Declared all variables
+    int foodweek1;
+    int transportweek1;
+    int entertainmentweek1;
+
+    int totalweek1;
+    float averageweek1;
+    
+    int foodweek2;
+    int transportweek2;
+    int entertainmentweek2;
+    int totalweek2;
+    float averageweek2;
+    
+   // int budget = 40000;
+
+     printf("\n==== SOL ASSESSMENT 1 ====\n");
+    printf("===== WEEKLY EXPENSE TRACKER =====\n");
+
+    printf("\n=== GRADE B ====\n");
+   
+    printf("\n ==== WEEK 1 EXPENSES ====\n");
+    printf("Enter Food Expenses: ");
+    scanf("%d", &foodweek1);
+
+    printf("Enter Transport Expenses: ");
+    scanf("%d", &transportweek1);
+
+    printf("Enter Entertainment Expenses: ");
+    scanf("%d", &entertainmentweek1);
+    
+    printf("\n==== WEEK 2 EXPENSES ====\n");
+    printf(" Enter Food Expenses: ");
+    scanf("%d", &foodweek2);
+    printf("Enter Transport Expenses: ");
+    scanf("%d", &transportweek2);
+    printf("Enter Entertainment Expenses: ");
+    scanf("%d", &entertainmentweek2);
+
+    // Validation
+    if (foodweek1 < 0 || transportweek1 < 0 || entertainmentweek1 < 0 || foodweek2<0 || transportweek2<0 || entertainmentweek2<0)
+    {
+
+//when users enters the wrong values
+
+        printf("\nInvalid Input! Spending cannot be negative.\n");
+        printf("\n  Try again! \n");
+        return 0;
+     }
+
