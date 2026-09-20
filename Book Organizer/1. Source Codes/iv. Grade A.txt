@@ -1,0 +1,236 @@
+
+//ASSESSMENT 6 GRADE A
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main()
+{
+    char books[8][100] =
+    {
+        "Moonlight Over Lagos",
+        "atomic habits",
+        "The Silent Patient",
+        "Deep Work",
+        "A Brief History of Time",
+        "Rich Dad Poor Dad",
+        "Educated",
+        "Zero to One"
+    };
+
+    char temp[100];
+
+    char book1[100];
+    char book2[100];
+
+    char deleteTitle[100];
+
+    int i;
+    int j;
+    int k;
+
+    int numberOfBooks = 8;
+    int found = 0;
+       
+
+    printf("\n  ======== SOL ASSESSMENT 6 ========\n");
+    printf("  === BOOK ORGANIZER ===\n");
+
+    printf("      ======= GRADE A =======\n\n");
+
+    // DISPLAY ORIGINAL BOOK LIST
+
+    printf("\n========== ORIGINAL BOOK LIST ==========\n");
+
+    for(i = 0; i < numberOfBooks; i++)
+    {
+        printf("%d. %s\n", i + 1, books[i]);
+    }
+
+      // GRADE B SORTING ALGORITHM
+       
+
+     //  This sorting method finds the alphabetically
+      // earliest book and places it into the first
+    //   unsorted position.
+    
+
+    for(i = 0; i < numberOfBooks - 1; i++)
+    {
+        for(j = i + 1; j < numberOfBooks; j++)
+        {
+            
+           //    Copy the two titles into temporary
+            //   strings so the comparison can be
+           //    made without changing the originals.
+            
+
+            strcpy(book1, books[j]);
+            strcpy(book2, books[i]);
+
+           
+            //   Convert both temporary copies to
+           //    lowercase for case-insensitive
+          //     comparison.
+            
+
+            for(k = 0; book1[k] != '\0'; k++)
+            {
+                book1[k] = tolower(book1[k]);
+            }
+
+            for(k = 0; book2[k] != '\0'; k++)
+            {
+                book2[k] = tolower(book2[k]);
+            }
+
+            
+          //     If books[j] comes before books[i],
+           //    swap the two titles.
+            
+
+            if(strcmp(book1, book2) < 0)
+            {
+                strcpy(temp, books[i]);
+                strcpy(books[i], books[j]);
+                strcpy(books[j], temp);
+            }
+        }
+    }
+
+    printf("\n========== AFTER FIRST SORT ==========\n");
+
+    for(i = 0; i < numberOfBooks; i++)
+    {
+        printf("%d. %s\n", i + 1, books[i]);
+    }
+
+    
+       
+    //   DELETE A BOOK
+      
+
+    printf("\nEnter the book title you want to delete: ");
+    scanf(" %[^\n]", deleteTitle);
+
+   
+     //  Search through the book list.
+    
+
+    for(i = 0; i < numberOfBooks; i++)
+    {
+        strcpy(book1, books[i]);
+        strcpy(book2, deleteTitle);
+
+        
+        //   Convert both strings to lowercase
+         //  for case-insensitive comparison.
+        
+
+        for(j = 0; book1[j] != '\0'; j++)
+        {
+            book1[j] = tolower(book1[j]);
+        }
+
+        for(j = 0; book2[j] != '\0'; j++)
+        {
+            book2[j] = tolower(book2[j]);
+        }
+
+        if(strcmp(book1, book2) == 0)
+        {
+            found = 1;
+
+            
+           //    Shift every book after the deleted
+           //    book one position to the left.
+            
+
+            for(j = i; j < numberOfBooks - 1; j++)
+            {
+                strcpy(books[j], books[j + 1]);
+            }
+
+            numberOfBooks--;
+
+            break;
+        }
+    }
+
+    if(found == 1)
+    {
+        printf("\nBook deleted successfully.\n");
+
+        printf("\n========== BOOKS AFTER DELETION ==========\n");
+
+        for(i = 0; i < numberOfBooks; i++)
+        {
+            printf("%d. %s\n", i + 1, books[i]);
+        }
+    }
+    else
+    {
+        printf("\nBook not found.\n");
+    }
+
+    
+       
+      // GRADE A - SECOND SORTING ALGORITHM
+      // BUBBLE SORT
+
+     //  Bubble Sort repeatedly compares adjacent
+      // books and swaps them if they are in the
+   //    wrong alphabetical order.
+   
+
+    for(i = 0; i < numberOfBooks - 1; i++)
+    {
+        for(j = 0; j < numberOfBooks - 1 - i; j++)
+        {
+            strcpy(book1, books[j]);
+            strcpy(book2, books[j + 1]);
+
+            
+            //   Convert copies to lowercase so the
+           //    comparison is case-insensitive.
+            
+
+            for(k = 0; book1[k] != '\0'; k++)
+            {
+                book1[k] = tolower(book1[k]);
+            }
+
+            for(k = 0; book2[k] != '\0'; k++)
+            {
+                book2[k] = tolower(book2[k]);
+            }
+
+            
+           //    If the current book comes after the
+           //    next book alphabetically, swap them.
+            
+
+            if(strcmp(book1, book2) > 0)
+            {
+                strcpy(temp, books[j]);
+                strcpy(books[j], books[j + 1]);
+                strcpy(books[j + 1], temp);
+            }
+        }
+    }
+
+    printf("\n========== AFTER BUBBLE SORT ==========\n");
+
+    for(i = 0; i < numberOfBooks; i++)
+    {
+        printf("%d. %s\n", i + 1, books[i]);
+    }
+
+    printf("\n=========================================\n");
+    printf("       BOOK ORGANIZER COMPLETE\n");
+    printf("=========================================\n");
+
+    return 0;
+}
+
