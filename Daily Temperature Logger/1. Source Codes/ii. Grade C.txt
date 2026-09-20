@@ -16,7 +16,7 @@ int main()
     float lowestTemperature;
 
 
-    printf("\n  ======== SOL ASSESSMENT 5 ========\n");
+    printf("\n  ======== GODPASDEM TECHNOLOGIES ========\n");
     printf("  === DAILY TEMPERATURE LOGGER  ===\n");
 
     printf("      ======= GRADE C =======\n\n");
