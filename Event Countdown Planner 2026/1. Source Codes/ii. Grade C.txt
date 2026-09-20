@@ -19,7 +19,7 @@ int main()
         30,31,30,31
     };
 
-    printf("\n  ======== SOL ASSESSMENT 4 ========\n");
+    printf("\n  ======== GODPASDEM TECHNOLOGIES ========\n");
     printf("  === EVENT COUNTDOWN PLANNER 2026 ===\n");
 
     printf("      ======= GRADE C =======\n\n");
