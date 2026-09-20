@@ -1,0 +1,163 @@
+
+#include <stdio.h>
+int main()
+{
+    int goal;
+    int day = 0;
+    int steps;
+    int totalSteps = 0;
+
+    float kilometres;
+    float calories;
+    float totalKilometres = 0;
+    float totalCalories = 0;
+    float progress;
+
+    int streak = 0;
+    int longestStreak = 0;
+
+    char intensity;
+    char again;
+
+    printf("\n  ======== GODPASDEM TECHNOLOGIES ========\n");
+    printf("  === STEP COUNT FITNESS TRACKER ===\n");
+    printf("     ====== LOOP CHALLENGE =======\n\n");
+
+    printf("      ======= GRADE A =======\n");
+
+    /* Validate Daily Goal */
+    do
+    {
+        printf("Enter your daily step goal: ");
+        scanf("%d", &goal);
+
+        if(goal <= 0)
+        {
+            printf("Daily goal must be greater than 0.\n\n");
+        }
+
+    } while(goal <= 0);
+
+    do
+    {
+        day++;
+
+        printf("\n========== DAY %d ==========\n", day);
+
+        /* Validate Daily Steps */
+
+        do
+        {
+            printf("Enter today's steps: ");
+            scanf("%d", &steps);
+
+            if(steps < 0)
+            {
+                printf("Steps cannot be negative.\n");
+            }
+
+        } while(steps < 0);
+
+        /* Validate Activity Intensity */
+
+        do
+        {
+            printf("\nActivity Intensity\n");
+            printf("L = Light\n");
+            printf("M = Moderate\n");
+            printf("F = Fast\n");
+
+            printf("Enter intensity: ");
+            scanf(" %c", &intensity);
+
+            if(intensity!='L' && intensity!='l' &&
+               intensity!='M' && intensity!='m' &&
+               intensity!='F' && intensity!='f')
+            {
+                printf("Invalid intensity! Please enter L, M or F.\n");
+            }
+
+        } while(intensity!='L' && intensity!='l' &&
+                intensity!='M' && intensity!='m' &&
+                intensity!='F' && intensity!='f');
+
+        kilometres = steps / 1250.0;
+        calories = (steps / 1000.0) * 40;
+
+        switch(intensity)
+        {
+            case 'L':
+            case 'l':
+                calories *= 0.90;
+                break;
+
+            case 'M':
+            case 'm':
+                break;
+
+            case 'F':
+            case 'f':
+                calories *= 1.20;
+                break;
+        }
+
+        progress = ((float)steps / goal) * 100;
+
+        totalSteps += steps;
+        totalKilometres += kilometres;
+        totalCalories += calories;
+
+        if(steps >= goal)
+        {
+            streak++;
+
+            if(streak > longestStreak)
+            {
+                longestStreak = streak;
+            }
+        }
+        else
+        {
+            streak = 0;
+        }
+
+        printf("\n========== DAILY SUMMARY ==========\n");
+        printf("Steps               : %d\n", steps);
+        printf("Distance            : %.2f km\n", kilometres);
+        printf("Calories Burned     : %.2f kcal\n", calories);
+        printf("Goal Progress       : %.2f%%\n", progress);
+
+        if(progress >= 100)
+        {
+            printf("Goal Achieved!\n");
+        }
+        else
+        {
+            printf("Goal Not Achieved.\n");
+        }
+
+        printf("\nTrack another day? (y/n): ");
+        scanf(" %c", &again);
+
+    } while(again == 'y' || again == 'Y');
+
+    printf("\n=========================================\n");
+    printf("        FITNESS TRACKER REPORT\n");
+    printf("=========================================\n");
+
+    printf("Days Tracked        : %d\n", day);
+    printf("Total Steps         : %d\n", totalSteps);
+    printf("Total Distance      : %.2f km\n", totalKilometres);
+    printf("Total Calories      : %.2f kcal\n", totalCalories);
+
+    if(day > 0)
+    {
+        printf("Average Steps       : %.2f\n", (float)totalSteps / day);
+        printf("Average Distance    : %.2f km\n", totalKilometres / day);
+        printf("Average Calories    : %.2f kcal\n", totalCalories / day);
+    }
+
+    printf("Longest Goal Streak : %d Day(s)\n", longestStreak);
+
+    return 0;
+}
