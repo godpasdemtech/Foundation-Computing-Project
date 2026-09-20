@@ -1,0 +1,122 @@
+
+#include <stdio.h>
+
+int main()
+{
+    // Declare variables
+    char movieType;
+    char ticketType;
+    float ticketPrice=0.0;
+    int NumOfTickets;
+    float TotalCost;;
+    
+    //ASK FOR USER INPUT
+
+     printf("\n==== SOL ASSESSMENT 2 ====\n");
+     printf("===== CINEMA TICKET BOOKING SYSTEM =====\n\n");
+
+     printf("   ==== GRADE C ====\n");
+
+    printf("Enter Movie Type (A = Action, C = Comedy, H = Horror): ");
+    scanf(" %c", &movieType);
+
+    printf("Enter Ticket Type (S = Standard, P = Premium): ");
+    scanf(" %c", &ticketType);
+
+    printf("Enter Number of Tickets: ");
+    scanf("%d", &NumOfTickets);
+
+    // Validate number of tickets
+
+    if (NumOfTickets <= 0)
+    {
+        printf("\nInvalid number of tickets!\n");
+        return 0;
+    }
+
+    // Determine ticket price using switch statement
+    switch(movieType)
+    {
+        case 'A':
+            if(ticketType == 'S') 
+                ticketPrice = 10.00;
+            else if(ticketType == 'P') 
+                ticketPrice = 15.00;
+            else
+            {
+                printf("\nInvalid Ticket Type!\n");
+                return 0;
+            }
+            break;
+
+        case 'C':
+            if(ticketType == 'S') 
+                ticketPrice = 8.00;
+            else if(ticketType == 'P') 
+                ticketPrice = 13.00;
+            else
+            {
+                printf("\nInvalid Ticket Type!\n");
+                return 0;
+            }
+            break;
+
+        case 'H':
+            if(ticketType == 'S') 
+                ticketPrice = 9.00;
+            else if(ticketType == 'P')
+                ticketPrice = 14.00;
+            else
+            {
+                printf("\nInvalid Ticket Type!\n");
+                return 0;
+            }
+            break;
+
+        default:
+            printf("\nInvalid Movie Type!\n");
+            return 0;
+    }
+    
+    //To calculate Total Cost
+    TotalCost = NumOfTickets * ticketPrice;
+    
+
+    // MAIN OUTPUT HERE
+
+    printf("\n\n** BOOKING RESULT **\n");
+    
+    switch(movieType)
+    {
+        case 'A':
+            printf("Movie Type:  Action\n");
+            break;
+
+        case 'C':
+            printf("Movie Type:  Comedy\n");
+            break;
+
+        case 'H':
+            printf("Movie Type:  Horror\n");
+            break;
+    }
+
+    // Display Ticket Type
+    switch(ticketType)
+    {
+        case 'S':
+            printf("Ticket Type:  Standard Seat\n");
+            break;
+
+        case 'P':
+            printf("Ticket Type:  Premium Seat\n");
+            break;
+    }
+
+    // Display Number of Tickets and total cost
+    printf(" Number of Tickets: %d\n", NumOfTickets);
+    printf("Total Movie Cost: £%.2f\n", TotalCost);
+
+    return 0;
+}
+
