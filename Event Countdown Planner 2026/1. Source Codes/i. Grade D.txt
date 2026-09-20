@@ -1,0 +1,53 @@
+
+#include <stdio.h>
+
+int main()
+{
+    int currentDay;
+    int currentMonth;
+
+    int eventDay;
+    int eventMonth;
+
+    int currentDate;
+    int eventDate;
+
+    int daysRemaining;
+
+    printf("\n  ======== SOL ASSESSMENT 4 ========\n");
+    printf("  === EVENT COUNTDOWN PLANNER 2026 ===\n");
+
+    printf("      ======= GRADE D =======\n\n");
+
+    printf("Enter Current Day: ");
+    scanf("%d", &currentDay);
+
+    printf("Enter Current Month: ");
+    scanf("%d", &currentMonth);
+
+    printf("Enter Event Day: ");
+    scanf("%d", &eventDay);
+
+    printf("Enter Event Month: ");
+    scanf("%d", &eventMonth);
+
+    /* Convert dates using 30-day months */
+
+    currentDate = ((currentMonth - 1) * 30) + currentDay;
+
+    eventDate = ((eventMonth - 1) * 30) + eventDay;
+
+    daysRemaining = eventDate - currentDate;
+
+    if(daysRemaining < 0)
+    {
+        printf("\nError: Event date has already passed.\n");
+    }
+    else
+    {
+        printf("\nApproximate Days Until Event: %d days\n", daysRemaining);
+    }
+
+    return 0;
+}
+
