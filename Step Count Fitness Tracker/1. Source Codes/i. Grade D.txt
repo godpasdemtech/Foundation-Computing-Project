@@ -1,0 +1,30 @@
+
+#include <stdio.h>
+int main()
+{
+    int steps;
+    float kilometers;
+    float calories;
+
+    // Get the number of steps from the user
+    printf("\n  ======== GODPASDEM TECHNOLOGIES ========\n");
+    printf("======= STEP COUNT FITNESS TRACKER LOOP CHALLENGE =======\n\n");
+
+    printf("======= GRADE D =======\n");
+    printf("Enter steps for today: ");
+    scanf("%d", &step);
+
+    // Convert steps to kilometers
+    kilometers = steps / 1250.0;
+
+    // Convert steps to calories burned
+    calories = (steps / 1000.0) * 40;
+
+    // Display the final output 
+    printf("\n===== DAILY ACTIVITY SUMMARY =====\n");
+    printf("Distance Walked : %.2f km\n", kilometers);
+    printf("Calories Burned : %.2f kcal\n", calories);
+
+    return 0;
+}
+
