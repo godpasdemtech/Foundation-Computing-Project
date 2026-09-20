@@ -1,0 +1,62 @@
+
+#include <stdio.h>
+int main()
+{
+    int steps;
+    float kilometers;
+    float calories;
+
+    int totalSteps = 0;
+    int totalDays = 0;
+    float totalKilometers = 0;
+    float totalCalories = 0;
+    char choice;
+    
+    printf("\n  ======== GODPASDEM TECHNOLOGIES ========\n");
+    printf("  === STEP COUNT FITNESS TRACKER ===\n");
+    printf("     ====== LOOP CHALLENGE =======\n\n");
+
+    printf("      ======= GRADE C =======\n");
+
+    do
+    {
+        printf("Enter steps for today: ");
+        scanf("%d", &steps);
+
+        // Convert steps
+        kilometers = steps / 1250.0;
+        calories = (steps / 1000.0) * 40;
+
+        // Display today's result
+        printf("\nToday's Activity\n");
+        printf("-------------------------\n");
+        printf("Distance : %.2f km\n", kilometers);
+        printf("Calories : %.2f kcal\n\n", calories);
+
+        // Update totals
+        totalDays++;
+        totalSteps += steps;
+        totalKilometers += kilometers;
+        totalCalories += calories;
+
+        // Ask user whether to continue
+        printf("Add another day? (y/n): ");
+        scanf(" %c", &choice);
+
+        printf("\n");
+
+    } while(choice == 'y' || choice == 'Y');
+
+    // Final Summary
+
+    printf("=====================================\n");
+    printf("      FITNESS TRACKER SUMMARY\n");
+    printf("=====================================\n");
+
+    printf("Days Tracked      : %d\n", totalDays);
+    printf("Total Steps       : %d\n", totalSteps);
+    printf("Total Distance    : %.2f km\n", totalKilometers);
+    printf("Total Calories    : %.2f kcal\n", totalCalories);
+
+    return 0;
+}
