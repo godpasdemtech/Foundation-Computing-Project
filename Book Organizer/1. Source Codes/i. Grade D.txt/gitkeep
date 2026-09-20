@@ -1,1 +1,35 @@
 
+//ASSESSMENT 6 GRADE D
+#include <stdio.h>
+
+int main()
+{
+    char books[8][100] =
+    {
+        "Moonlight Over Lagos",
+        "Atomic Habits",
+        "The Silent Patient",
+        "Deep Work",
+        "A Brief History of Time",
+        "Rich Dad Poor Dad",
+        "Educated",
+        "Zero to One"
+    };
+
+    int i;
+
+printf("\n  ======== SOL ASSESSMENT 6 ========\n");
+    printf("  === BOOK ORGANIZER ===\n");
+
+    printf("      ======= GRADE D =======\n\n");
+
+    for(i = 0; i < 8; i++)
+    {
+        printf("Current Title: \"%s\"\n", books[i]);
+        printf("First Title: \"%s\"\n\n", books[0]);
+    }
+
+    return 0;
+}
+
+
