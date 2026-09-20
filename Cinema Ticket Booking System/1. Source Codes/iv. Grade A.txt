@@ -1,5 +1,4 @@
 
-
 #include <stdio.h>
 
 int main()
@@ -16,8 +15,8 @@ int main()
     float finalTotal;
     int choice;
         
-        printf("\n       ======    SOL ASSESSMENT 2    ======\n");
-     printf("       ======       GRADE A          ======\n");
+        printf("\n  ======== GODPASDEM TECHNOLOGIES ========\n");
+     printf("       ============ GRADE A ============\n");
      
 
     do
