@@ -1,7 +1,5 @@
 
-// ASSESSMENT 1 GRADE C 
 #include <stdio.h>
-
 int main()
 {
     //I Declared all variables
@@ -13,7 +11,7 @@ int main()
     float average;
     int budget = 40000;
 
-    printf("\n==== SOL ASSESSMENT 1 ====\n");
+    printf("\n  ======== GODPASDEM TECHNOLOGIES ========\n");
     printf("===== WEEKLY EXPENSE TRACKER =====\n\n");
 
     printf("=== GRADE C ====\n");
