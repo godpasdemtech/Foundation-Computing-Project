@@ -1,0 +1,79 @@
+
+//ASSESSMENT 6 GRADE C
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main()
+{
+    char books[8][100] =
+    {
+        "Moonlight Over Lagos",
+        "atomic habits",
+        "The Silent Patient",
+        "Deep Work",
+        "A Brief History of Time",
+        "Rich Dad Poor Dad",
+        "Educated",
+        "Zero to One"
+    };
+
+    char temp[100];
+    char book1[100];
+    char book2[100];
+
+    int i;
+    int j;
+
+    printf("\n  ======== SOL ASSESSMENT 6 ========\n");
+    printf("  === BOOK ORGANIZER ===\n");
+
+    printf("      ======= GRADE C =======\n\n");
+
+    printf("\n========== BEFORE SORTING ==========\n");
+
+    for(i = 0; i < 8; i++)
+    {
+        printf("%d. %s\n", i + 1, books[i]);
+    }
+
+    //
+    //   Grade C:
+     //  Compare every title with books[0].
+     //  The comparison is case-insensitive.
+    
+
+    for(i = 1; i < 8; i++)
+    {
+        strcpy(book1, books[i]);
+        strcpy(book2, books[0]);
+
+        for(j = 0; book1[j] != '\0'; j++)
+        {
+            book1[j] = tolower(book1[j]);
+        }
+
+        for(j = 0; book2[j] != '\0'; j++)
+        {
+            book2[j] = tolower(book2[j]);
+        }
+
+        if(strcmp(book1, book2) < 0)
+        {
+            strcpy(temp, books[0]);
+            strcpy(books[0], books[i]);
+            strcpy(books[i], temp);
+        }
+    }
+
+    printf("\n========== AFTER ONE PASS ==========\n");
+
+    for(i = 0; i < 8; i++)
+    {
+        printf("%d. %s\n", i + 1, books[i]);
+    }
+
+    return 0;
+}
+
+
